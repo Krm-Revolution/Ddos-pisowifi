@@ -1,5 +1,3 @@
-#⟡ RECURSIVE OUTPUT ⟡
-#DARK TOOLS DDOS HINDI DDS
 #!/usr/bin/python3
 
 import time,sys,socket,threading,random,os,signal
@@ -74,7 +72,7 @@ def r():
 
 def t():
     print('''    
- Usage: python3 spam.py -s <ip> -m <mode> [-p <port>] [-t <threads>]
+ Usage: python3 Ddos.py -s <ip> -m <mode> [-p <port>] [-t <threads>]
     -h : help
     -s : target ip
     -m : mode (tcp / udp / both)
